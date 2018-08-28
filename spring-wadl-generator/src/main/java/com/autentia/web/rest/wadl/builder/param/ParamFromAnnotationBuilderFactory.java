@@ -17,6 +17,7 @@ package com.autentia.web.rest.wadl.builder.param;
 
 import com.autentia.web.rest.wadl.builder.namespace.GrammarsDiscoverer;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.annotation.Annotation;
@@ -30,6 +31,7 @@ public class ParamFromAnnotationBuilderFactory {
     public ParamFromAnnotationBuilderFactory(GrammarsDiscoverer grammarsDiscoverer) {
         paramBuilderByAnnotation.put(RequestParam.class.getName(), new ParamFromRequestParamBuilder(grammarsDiscoverer));
         paramBuilderByAnnotation.put(PathVariable.class.getName(), new ParamFromPathVariableBuilder(grammarsDiscoverer));
+        paramBuilderByAnnotation.put(RequestBody.class.getName(), new ParamFromRequestBodyBuilder(grammarsDiscoverer));
     }
 
     public ParamFromAnnotationBuilder builderFor(Annotation annotation) {
